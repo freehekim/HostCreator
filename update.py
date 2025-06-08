@@ -24,11 +24,18 @@ for url in urls:
 
 # Başlık (meta bilgi)
 header = [
+    "# Title: Hakan/Hosts",
+    "#",
     "# Custom Hosts File – Generated on: " + datetime.utcnow().strftime("%Y-%m-%d"),
+    "#",
     "# Sources:"
 ] + [f"#  - {url}" for url in urls] + [
-    "# info: Hakan tarafından Reklam, Takipçi ve Zararlı Domainleri engellemek için hazırlanmıştır.",
-    "# ==============================================================="
+    "#",
+    "# Info: Bu dosya, Hakan tarafından reklam, takipçi ve zararlı alan adlarını engellemek amacıyla hazırlanmıştır.",
+    "#",
+    "# ==================================================",
+    "# 🧱 Sistemsel DNS & Yerel Ağ Tanımları (IPv4/IPv6)",
+    "# =================================================="
 ]
 
 # Sistemsel başlangıç girişleri (sabit)
@@ -49,6 +56,12 @@ static_entries = [
     "0.0.0.0 0.0.0.0"
 ]
 
-# Tüm listeyi birleştirip yaz
+blocklist_intro = [
+    "",
+    "# =================================================================",
+    "# ⛔ Reklam, takipçi ve zararlı alan adları aşağıda listelenmiştir",
+    "# ================================================================="
+]
+
 with open("hosts", "w") as f:
-    f.write("\n".join(header + [""] + static_entries + [""] + sorted(domain_map.values())))
+    f.write("\n".join(header + [""] + static_entries + blocklist_intro + sorted(domain_map.values())))
