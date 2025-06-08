@@ -1,0 +1,27 @@
+name: Günlük Hosts Güncelleme
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Bağımlılıkları yükle
+        run: pip install requests
+      - name: update.py çalıştır
+        run: python update.py
+      - name: Commit ve Push
+        run: |
+          git config user.name "Hakan Bot"
+          git config user.email "bot@hakan.dev"
+          git add hosts
+          git commit -m "Günlük otomatik hosts güncellemesi" || echo "Değişiklik yok"
+          git push
