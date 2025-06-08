@@ -25,8 +25,9 @@ for url in urls:
 header = [
     "# Custom Hosts File – Generated on: " + datetime.utcnow().strftime("%Y-%m-%d"),
     "# Sources:"
-] + [f"#  - {url}" for url in urls] + ["# info: Prepared by Hakan for root Android ad-blocking.
-"]
+] + [f"#  - {url}" for url in urls] + [
+    "# info: Hakan tarafından kök Android reklam engelleme için hazırlanmıştır."
+]
 
 with open("hosts", "w") as f:
     f.write("\n".join(header + sorted(domain_map.values())))
